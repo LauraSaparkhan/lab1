@@ -15,14 +15,11 @@ import java.util.Map;
 @WebServlet("/BankSystem")
 public class BankSystem extends HttpServlet {
 
-    // In-memory user store
     private static Map<String, User> users = new HashMap<>();
 
     @Override
     public void init() {
-        // Initialize an admin user
         User adminUser = new User("admin", "admin");
-        // Force admin to have a 0 balance or random if you want
         adminUser.setBalance(0.0);
         users.put("admin", adminUser);
     }
@@ -82,7 +79,6 @@ public class BankSystem extends HttpServlet {
         if (user != null && user.validatePassword(password)) {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-            // Check if admin
             if ("admin".equals(username)) {
                 response.sendRedirect("admin.html");
             } else {
@@ -112,13 +108,11 @@ public class BankSystem extends HttpServlet {
             return;
         }
         User currentUser = (User) session.getAttribute("user");
-        // Only admin can list users
         if (!"admin".equals(currentUser.getUsername())) {
             response.getWriter().println("Unauthorized!");
             return;
         }
 
-        // Return JSON array of all users
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         out.println("[");
@@ -141,7 +135,6 @@ public class BankSystem extends HttpServlet {
             return;
         }
         User currentUser = (User) session.getAttribute("user");
-        // Only admin can delete users
         if (!"admin".equals(currentUser.getUsername())) {
             response.getWriter().println("Unauthorized!");
             return;
@@ -153,7 +146,6 @@ public class BankSystem extends HttpServlet {
             response.getWriter().println("User not found or no username provided!");
             return;
         }
-        // Don't allow admin to delete themselves
         if ("admin".equals(userToDelete)) {
             response.getWriter().println("Cannot delete admin user!");
             return;
