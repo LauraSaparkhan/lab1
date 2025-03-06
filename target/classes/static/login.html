@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Bank System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-container {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    .login-container h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .login-container form label {
+      display: block;
+      margin: 10px 0 5px;
+      color: #555;
+    }
+    .login-container form input[type="text"],
+    .login-container form input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .login-container form button {
+      width: 100%;
+      padding: 10px;
+      background: #4CAF50;
+      border: none;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    .login-container form button:hover {
+      background: #45a049;
+    }
+    .login-container .link {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .login-container .link a {
+      color: #4CAF50;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+<div class="login-container">
+  <h2>Login</h2>
+  <form action="BankSystem" method="post">
+    <input type="hidden" name="action" value="login">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <button type="submit">Login</button>
+  </form>
+  <div class="link">
+    <p>Don't have an account? <a href="register.html">Register here</a></p>
+  </div>
+</div>
+</body>
+</html>
